@@ -9,7 +9,9 @@ import LoadingScreen from '../components/LoadingScreen';
  * 家
  */
 const BrowsePage = () => {
+  alert("這個頁面還沒開放喔")
   const navigation = useNavigation();
+  navigation.navigate("首頁")
   // test data
   const testdata = [
     { id: 1, name: '商店1', image: require('../images/store.jpg'), rating:3.2 },
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
     marginVertical: 16,
   },
   columnWrapper: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
   categoryItem: {
     flex: 1,
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     
   },
   categoryImage: {
-    width: 200,
+    width: 180,
     height: 100,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10
@@ -109,5 +111,4 @@ const styles = StyleSheet.create({
   }
 
 });
-
 export default BrowsePage;

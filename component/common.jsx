@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
  function checkToken(){
     var status = true
     Axios().post('api/token/verify/',
-    JSON.stringify({"token": 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAzOTY2OTM4LCJpYXQiOjE3MDM5NjMzMzgsImp0aSI6Ijg1YzMzN2RlOGVkNTQ5NTM4M2ZkZTc1M2Q2OTg2NmM2IiwidXNlcl9pZCI6ImFkbWluMDEiLCJ1aWQiOiJhZG1pbjAxIiwiYWNjb3VudCI6ImJvYiJ9.F4rGCoUeKWhi561p-IloydckVvRpwbDcGv-6yG95UMc'})
+    JSON.stringify({"token": 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA0MDQ1ODc5LCJpYXQiOjE3MDQwNDIyNzksImp0aSI6IjA4MWQwZDc0OGZjODQ1YmQ4MzNmMTUzZDNhOWVlMzJkIiwidXNlcl9pZCI6ImFkbWluMDEiLCJ1aWQiOiJhZG1pbjAxIiwiYWNjb3VudCI6ImJvYiJ9.FhPYm_VFB91JWnNWBfJ31fuBPAs9ReIFK2-iPeZ5VLE'})
     )
     .then((res) => {
         let response = res
