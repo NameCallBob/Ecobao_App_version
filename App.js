@@ -15,6 +15,7 @@ import NotifyPage from './pages/NotifyPage';
 import CartPage from './pages/cart/CartPage';
 import OrderPages from './pages/OrderPages';
 import LoginPage from './components/account/Login';
+import TypeStoreOutputPage from './pages/type/Type_Brower';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +29,7 @@ export default function App() {
   const CartScreen = () => {return <CartPage/>}
   const OrderScreen = () => {return <OrderPages/>}
   const LoginSreen = () => {return <LoginPage/>}
+  const TypeOutputScreen = () => {return <TypeStoreOutputPage />}
   const BottomTabs = () =>{
     return(
       <Tab.Navigator
@@ -97,6 +99,10 @@ export default function App() {
           options={{
             headerShown: false
           }}
+        />
+        <Stack.Screen
+          name = '類別輸出'
+          component={TypeOutputScreen}
         />
         <Stack.Screen
           name = '店家'

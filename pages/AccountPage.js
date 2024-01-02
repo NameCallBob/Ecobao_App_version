@@ -21,8 +21,9 @@ function AccountPage() {
             setAccountdata(resp)
         })
         .catch((err) => {
-          console.log(err.response)
-          alert("發生意外問題")
+          navigation.navigate("登入")
+          // console.log(err.response)
+          // alert("發生意外問題")
         })
       }
       else{

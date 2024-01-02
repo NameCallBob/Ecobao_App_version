@@ -9,31 +9,23 @@ import LoadingScreen from '../components/LoadingScreen';
  * 家
  */
 const BrowsePage = () => {
-  alert("這個頁面還沒開放喔")
   const navigation = useNavigation();
-  navigation.navigate("首頁")
-  // test data
+  
   const testdata = [
-    { id: 1, name: '商店1', image: require('../images/store.jpg'), rating:3.2 },
-    { id: 2, name: '商店2', image: require('../images/store.jpg'), rating:4.9 },
-    { id: 3, name: '商店3', image: require('../images/store.jpg'), rating:5.0 },
-    { id: 4, name: '商店4', image: require('../images/store.jpg'), rating:4.5 },
-    { id: 5, name: '商店5', image: require('../images/store.jpg'), rating:4.4 },
-    { id: 6, name: '商店6', image: require('../images/store.jpg'), rating:3.2 },
-    { id: 7, name: '商店7', image: require('../images/store.jpg'), rating:4.9 },
-    { id: 8, name: '商店8', image: require('../images/store.jpg'), rating:5.0 },
-    { id: 9, name: '商店9', image: require('../images/store.jpg'), rating:4.5 },
-    { id: 10, name: '商店10', image: require('../images/store.jpg'), rating:4.4 },
+    { id: 1, name: '中式', image: require('../images/中式.jpg') ,value:'中式'},
+    { id: 2, name: '炸物', image: require('../images/炸物.jpg') ,value:'炸物'},
+    { id: 3, name: '日式', image: require('../images/日式.jpg') ,value:'日式'},
+    { id: 4, name: '手搖飲', image: require('../images/手搖飲.png') ,value:'手搖飲'},
   ];
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const handlePress = (id) =>{
-    navigation.navigate('店家', {id})
+  const handlePress = (value) =>{
+    navigation.navigate('類別輸出', {value:value})
   }
 
   const renderCategory = ({ item }) => (
-    <TouchableOpacity key={item.id} onPress={()=>handlePress(item.id)}>
+    <TouchableOpacity key={item.id} onPress={()=>handlePress(item.value)}>
       <View style={styles.categoryItem}>
         <Image source={item.image} style={styles.categoryImage} resizeMode='center' />
         <Text style={styles.categoryText}>{item.name}</Text>
@@ -63,7 +55,7 @@ const BrowsePage = () => {
         <FlatList
           data={data}
           renderItem={renderCategory}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item.value.toString()}
           numColumns={2}
           columnWrapperStyle={styles.columnWrapper}
         />

@@ -5,20 +5,21 @@ import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
  *通知頁面
  */
 function NotifyPage() {
+    alert('此為系統預覽畫面')
     // 預覽畫面
     const data = [
         {
             id: 1,
-            title: '餐點正在準備中',
-            content: '啊啊啊啊啊$1450需不需要price?',
+            title: '餐點可領取',
+            content: '大麥克點了5個，你不是在減肥？？？',
             from: '麥當勞',
             date: '11/24',
             time: '19:30',
         },
         {
             id: 2,
-            title: '餐點正在準備中',
-            content: '欸欸欸欸$163',
+            title: '餐點準備中',
+            content: '炸雞中！',
             from: '肯德基',
             date: '11/23',
             time: '19:30',

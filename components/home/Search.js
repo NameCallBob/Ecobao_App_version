@@ -1,24 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState ,useRef} from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
+import Axios from '../../component/axios';
 
 
 /**
  * 搜尋商品input
  * @returns 
  */
-function Search() {
-  const [value, setValue] = useState("")
-  console.log(value)
-  
+function Search({search,SetSearch,data,setData}) {
+  const inputRef = useRef(null)
+  const handleSearch = () => {
+    Axios().get("store_sch/search/",{'params':{'name':search}})
+    .then((res) => {
+      let resp = res.data
+      setData(resp)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
   return (
-    <View style={styles.container}>
+    <View style={styles.constainer}>
         <Text style={styles.heading}>查詢美食</Text>
         <View style={styles.searchContainer}>
         <TextInput
+            ref={inputRef}
             style={styles.searchInput}
             placeholder="搜尋商品..."
             placeholderTextColor="#888"
-            onChangeText={(text)=>setValue(text)}
+            value={search}
+            onChangeText={(text)=>SetSearch(text)}
+            onSubmitEditing={handleSearch}
             clearButtonMode='always'
         />
         </View>

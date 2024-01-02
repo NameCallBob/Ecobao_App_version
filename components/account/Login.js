@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Axios from "../../component/axios";
-import { saveToken } from '../../component/common';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import * as SecureStore from 'expo-secure-store';
 //   登入頁面
 export default function LoginPage(){
   const navigation = useNavigation();
@@ -20,8 +18,7 @@ export default function LoginPage(){
       .then((res) => {
         alert("登入成功")
         navigation.navigate('首頁');
-        AsyncStorage.setItem('JWTtoken',res.data.access)
-        
+        SecureStore.setItemAsync('token', res.data.access)
       })
       .catch((err) => {
         alert("帳號密碼錯誤")

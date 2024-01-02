@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TextInput, ScrollView, SafeAreaView, FlatList, RefreshControl } from 'react-native';
-import Search from '../components/home/Search';
-import Recommand from '../components/home/Recommand';
-import StoreList from '../components/home/StoreList';
-import Axios from "../component/axios.jsx"
-// import { checkToken } from '../component/common.jsx';
+import StoreList from '../../components/home/StoreList';
+import { useRoute } from '@react-navigation/native';
+import Axios from '../../component/axios';
 /**
- * 首頁
+ * 點選類別跳轉至商品查詢結果！
  */
-const HomePage = () => {
+const TypeStoreOutputPage = () => {
+    const route = useRoute()
+    const {value} = route.params;
+
   const [data, setData] = useState(null);
-  const [SearchText, setText] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
 
-  // 串接
-  
   const handleEndReached = () =>{
     if(!loadingMore){
       setLoadingMore(true);
@@ -31,28 +29,21 @@ const HomePage = () => {
   }
 
   useEffect(()=>{
-    //首次進入頁面，初始化資料：Ｄ
-    Axios().get("store_sch/all/")
+    Axios().get("store_sch/type/",{params:{'type':value}})
     .then((res) => {
-      let resp = res.data
-      console.log(resp)
-      setData(resp)
-    })
+        console.log(res.data)
+        setData(res.data)
+    })  
     .catch((err) => {
-      console.log(err)
+        console.log(err)
     })
-  },[]) 
+  },[])
 
   return (
     <View style={styles.container}>
     <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />}>
-      {/* 搜尋美食 */}
-      <Search search={SearchText} SetSearch={setText} data = {data} setData = {setData} />
-      {/* 推薦店家 */}
-      <Recommand />
-      {/* 查看店家 */}
       <View>
-        <Text style={styles.heading}>查看店家</Text>
+        <Text style={styles.heading}>一般店家</Text>
         <StoreList data={data} handleEndReached={handleEndReached} />
       </View>
     </ScrollView>
@@ -78,4 +69,4 @@ const styles = StyleSheet.create({
   
 });
 
-export default HomePage;
+export default TypeStoreOutputPage;
